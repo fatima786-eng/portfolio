@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghulam Fatima | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <!-- Navbar -->
+  <header class="fixed w-full bg-gray-800 bg-opacity-80 backdrop-blur z-50 shadow-lg">
+    <nav class="max-w-6xl mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-teal-400 flex items-center gap-2">
+        <i data-lucide="code"></i> Fatima.dev
+      </h1>
+      <ul class="flex gap-6">
+        <li><a href="#about" class="hover:text-teal-400 transition flex items-center gap-1"><i data-lucide="user"></i> About</a></li>
+        <li><a href="#skills" class="hover:text-teal-400 transition flex items-center gap-1"><i data-lucide="bar-chart"></i> Skills</a></li>
+        <li><a href="#projects" class="hover:text-teal-400 transition flex items-center gap-1"><i data-lucide="folder"></i> Projects</a></li>
+        <li><a href="#blog" class="hover:text-teal-400 transition flex items-center gap-1"><i data-lucide="book"></i> Blog</a></li>
+        <li><a href="#contact" class="hover:text-teal-400 transition flex items-center gap-1"><i data-lucide="mail"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+<section class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 overflow-hidden" id="hero">
+      <canvas id="hero-bg" class="absolute inset-0 w-full h-full"></canvas>
+
+    
+    <div class="relative z-10">
+    <h2 class="text-5xl md:text-6xl font-bold mb-4">Hi, I'm Ghulam Fatima 👩‍💻</h2>
+    <p class="text-xl md:text-2xl text-gray-300 max-w-2xl">A passionate Full Stack Web Developer creating modern, interactive and responsive websites.</p>
+    <button class="mt-6 px-6 py-3 bg-teal-500 text-white rounded-xl shadow-lg hover:bg-teal-400 transition flex items-center gap-2">
+      <i data-lucide="send"></i> Hire Me
+    </button>
+  </div>
+</section>
+
+  <!-- About Section -->
+  <section id="about" class="max-w-5xl mx-auto py-20 px-6">
+    <h3 class="text-3xl font-bold mb-6 text-teal-400 flex items-center gap-2"><i data-lucide="user"></i> About Me</h3>
+    <p class="text-gray-300 leading-relaxed">I am a full stack developer skilled in building modern web applications using technologies like HTML, CSS, JavaScript, React, Node.js, and TailwindCSS. I love creating smooth animations and user-friendly designs that make websites come alive.</p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="bg-gray-800 py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-3xl font-bold mb-10 text-teal-400 flex items-center gap-2"><i data-lucide="bar-chart"></i> My Skills</h3>
+      <div class="space-y-6">
+        <div>
+          <p class="mb-2">HTML</p>
+          <div class="w-full bg-gray-700 rounded-xl h-5 overflow-hidden">
+            <div class="bg-teal-500 h-5 w-[95%] skill-bar" data-skill="95"></div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-2">TailwindCSS</p>
+          <div class="w-full bg-gray-700 rounded-xl h-5 overflow-hidden">
+            <div class="bg-teal-500 h-5 w-[90%] skill-bar" data-skill="90"></div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-2">JavaScript</p>
+          <div class="w-full bg-gray-700 rounded-xl h-5 overflow-hidden">
+            <div class="bg-teal-500 h-5 w-[88%] skill-bar" data-skill="88"></div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-2">ReactJS</p>
+          <div class="w-full bg-gray-700 rounded-xl h-5 overflow-hidden">
+            <div class="bg-teal-500 h-5 w-[85%] skill-bar" data-skill="85"></div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-2">Node.js</p>
+          <div class="w-full bg-gray-700 rounded-xl h-5 overflow-hidden">
+            <div class="bg-teal-500 h-5 w-[80%] skill-bar" data-skill="80"></div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-2">Express.js</p>
+          <div class="w-full bg-gray-700 rounded-xl h-5 overflow-hidden">
+            <div class="bg-teal-500 h-5 w-[78%] skill-bar" data-skill="78"></div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-2">MongoDB</p>
+          <div class="w-full bg-gray-700 rounded-xl h-5 overflow-hidden">
+            <div class="bg-teal-500 h-5 w-[82%] skill-bar" data-skill="82"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <section id="projects" class="py-20 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h3 class="text-3xl font-bold mb-10 text-teal-400 flex items-center gap-2">
+      <i data-lucide="folder"></i> My Projects
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      
+      <!-- Project 1: Product -->
+      <a href="product.html" class="block bg-gray-700 rounded-xl shadow-lg p-4 text-center transform transition hover:scale-105 hover:bg-gray-600">
+        <h4 class="text-lg font-semibold mb-2 flex items-center justify-center gap-2">
+          <i data-lucide="package"></i> Product
+        </h4>
+        <p class="text-gray-300 text-sm">A product showcase project with clean UI.</p>
+      </a>
+
+      <!-- Project 2: Netflix Clone -->
+      <a href="netflix.html" class="block bg-gray-700 rounded-xl shadow-lg p-4 text-center transform transition hover:scale-105 hover:bg-gray-600">
+        <h4 class="text-lg font-semibold mb-2 flex items-center justify-center gap-2">
+          <i data-lucide="film"></i> Netflix Clone
+        </h4>
+        <p class="text-gray-300 text-sm">A Netflix-inspired clone with movies and dashboard.</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="blog" class="bg-gray-800 py-20 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h3 class="text-3xl font-bold mb-10 text-teal-400 flex items-center gap-2">
+      <i data-lucide="book"></i> Latest Blogs
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      
+      <!-- Blog 1: Agency -->
+      <a href="agency.html" class="block bg-gray-700 rounded-xl shadow-md p-4 text-center transform transition hover:scale-105 hover:bg-gray-600">
+        <h4 class="text-lg font-semibold mb-2 flex items-center justify-center gap-2">
+          <i data-lucide="briefcase"></i> Agency
+        </h4>
+        <p class="text-gray-300 text-sm">How agencies build sleek, responsive designs.</p>
+      </a>
+
+      <!-- Blog 2: Landing Page -->
+      <a href="landing.html" class="block bg-gray-700 rounded-xl shadow-md p-4 text-center transform transition hover:scale-105 hover:bg-gray-600">
+        <h4 class="text-lg font-semibold mb-2 flex items-center justify-center gap-2">
+          <i data-lucide="globe"></i> Landing Page
+        </h4>
+        <p class="text-gray-300 text-sm">Designing high-converting landing pages.</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6 text-center">
+    <h3 class="text-3xl font-bold mb-6 text-teal-400 flex items-center justify-center gap-2"><i data-lucide="mail"></i> Get In Touch</h3>
+    <p class="text-gray-300 mb-4">Have a project or want to collaborate? Feel free to reach out.</p>
+    <div class="space-y-3 text-gray-300">
+      <p class="flex items-center justify-center gap-2"><i data-lucide="map-pin"></i> Chongi No 5, Mohallah Balila, Nankana Sahib</p>
+      <p class="flex items-center justify-center gap-2"><i data-lucide="phone"></i> 03274116614</p>
+      <p class="flex items-center justify-center gap-2"><i data-lucide="mail"></i>dufatima490@gmail.com</p>
+    </div>
+    <a href="mailto:yourmail@example.com" class="mt-6 inline-flex px-6 py-3 bg-teal-500 text-white rounded-xl shadow-lg hover:bg-teal-400 transition items-center gap-2 justify-center">
+      <i data-lucide="send"></i> Say Hello
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-center py-6 border-t border-gray-700">
+    <p class="text-gray-400">© 2025 Ghulam Fatima. All rights reserved.</p>
+  </footer>
+
+  <!-- Animation Script -->
+  <script>
+    lucide.createIcons();
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero animations
+    gsap.from("#hero h2", { duration: 1, y: -50, opacity: 0, ease: "bounce" });
+    gsap.from("#hero p", { duration: 1, delay: 0.5, y: 30, opacity: 0 });
+    gsap.from("#hero button", { duration: 1, delay: 1, scale: 0, opacity: 0 });
+
+    // Section animations on scroll
+    gsap.utils.toArray("section").forEach((section, i) => {
+      gsap.from(section, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%"
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        delay: i * 0.2
+      });
+    });
+
+    // Skill bars animation
+    gsap.utils.toArray(".skill-bar").forEach(bar => {
+      const width = bar.getAttribute("data-skill");
+      gsap.from(bar, {
+        width: 0,
+        duration: 2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: bar,
+          start: "top 90%"
+        }
+      });
+    });
+  </script>
+  <script>
+  const canvas = document.getElementById("hero-bg");
+  const ctx = canvas.getContext("2d");
+  let width, height;
+  let lines = [];
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = document.getElementById("hero").offsetHeight;
+  }
+  window.addEventListener("resize", resize);
+  resize();
+
+  class ElectricLine {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.length = 50 + Math.random() * 100;
+      this.angle = Math.random() * Math.PI * 2;
+      this.speed = 1 + Math.random() * 2;
+      this.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+    }
+    update() {
+      this.x += Math.cos(this.angle) * this.speed;
+      this.y += Math.sin(this.angle) * this.speed;
+      if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+        this.reset();
+      }
+    }
+    draw() {
+      ctx.strokeStyle = this.color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(this.x - Math.cos(this.angle) * this.length, this.y - Math.sin(this.angle) * this.length);
+      ctx.stroke();
+    }
+  }
+
+  for (let i = 0; i < 40; i++) {
+    lines.push(new ElectricLine());
+  }
+
+  function animate() {
+    ctx.fillStyle = "rgba(17, 24, 39, 0.2)"; // smooth fade effect (tailwind bg-gray-900)
+    ctx.fillRect(0, 0, width, height);
+
+    lines.forEach(line => {
+      line.update();
+      line.draw();
+    });
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Change colors on hover/touch
+  const heroSection = document.getElementById("hero");
+  heroSection.addEventListener("mouseenter", () => {
+    lines.forEach(line => {
+      line.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+    });
+  });
+  heroSection.addEventListener("touchstart", () => {
+    lines.forEach(line => {
+      line.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+    });
+  });
+</script>
+</body>
+</html>

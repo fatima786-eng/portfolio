@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Clone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      font-family: 'Arial', sans-serif;
+    }
+    .card img {
+      transition: transform 0.3s;
+    }
+    .card:hover img {
+      transform: scale(1.05);
+    }
+    .capsule-btn {
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.65rem;
+      background-color: #4b5563;
+      color: white;
+    }
+    .capsule-btn:hover {
+      background-color: #6b7280;
+    }
+    canvas {
+      background-color: #1f2937 !important;
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-gray-900 p-4 flex justify-between items-center shadow-lg">
+    <h1 class="text-xl font-bold text-red-600">🎬 MyFlix</h1>
+    <div class="flex space-x-2">
+      <button class="capsule-btn" onclick="filterContent('Movie')">Movies</button>
+      <button class="capsule-btn" onclick="filterContent('Drama')">Drama</button>
+      <button class="capsule-btn" onclick="filterContent('Song')">Songs</button>
+      <button class="capsule-btn" onclick="filterContent('All')">All</button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="p-6 max-w-7xl mx-auto">
+    <div id="content-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Cards dynamically inserted here -->
+    </div>
+
+    <!-- Dashboard -->
+    <section class="mt-10 p-6 rounded-lg shadow-lg">
+      <h2 class="text-lg font-bold mb-4">Dashboard</h2>
+      <canvas id="dashboardChart" height="100"></canvas>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="mt-6 p-4 rounded-lg shadow-lg">
+      <h2 class="text-lg font-bold mb-2">Comments</h2>
+      <ul id="comments-list" class="space-y-2 text-sm"></ul>
+    </section>
+  </main>
+
+  <script>
+const content = [
+  // Movies
+  { id: 1, type: 'Movie', title: 'Inception', duration: 120, image: 'images/inception.jpg' },
+  { id: 2, type: 'Movie', title: 'Interstellar', duration: 150, image: 'images/interstallar.jpg' },
+  { id: 3, type: 'Movie', title: 'The Dark Knight', duration: 152, image: 'images/darknight.jpg' },
+  { id: 4, type: 'Movie', title: 'Avatar', duration: 162, image: 'images/avatar.jpg' },
+
+  // Drama
+  { id: 5, type: 'Drama', title: 'Breaking Bad', duration: 50, image: 'images/breakingbad.jpg' },
+  { id: 6, type: 'Drama', title: 'Game of Thrones', duration: 60, image: 'images/got.jpg' },
+  { id: 7, type: 'Drama', title: 'Stranger Things', duration: 55, image: 'images/strangerthings.jpg' },
+  { id: 8, type: 'Drama', title: 'The Crown', duration: 58, image: 'images/crown.jpg' },
+
+  // Songs
+  { id: 9, type: 'Song', title: 'Blinding Lights', duration: 4, image: 'images/blindinglight.jpg' },
+  { id: 10, type: 'Song', title: 'Shape of You', duration: 5, image: 'images/shapeofyou.jpg' },
+  { id: 11, type: 'Song', title: 'Bad Guy', duration: 4, image: 'images/badguy.jpg' },
+  { id: 12, type: 'Song', title: 'Uptown Funk', duration: 5, image: 'images/uptownfunk.jpg' }
+];
+
+
+
+
+    let watchTime = { Movie: 0, Drama: 0, Song: 0 };
+    let likes = 0;
+    let comments = [];
+
+    const contentList = document.getElementById('content-list');
+    const commentsList = document.getElementById('comments-list');
+
+    function renderContent(items) {
+      contentList.innerHTML = '';
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col transform transition duration-300 hover:scale-105 text-sm';
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" class="w-full h-36 object-cover"/>
+          <div class="p-3 flex-1 flex flex-col">
+            <h3 class="text-sm font-bold mb-1">${item.title}</h3>
+            <p class="mb-2 text-xs">${item.type} | ${item.duration} mins</p>
+            <div class="mt-auto flex flex-wrap gap-1">
+              <button class="capsule-btn like-btn">Like</button>
+              <button class="capsule-btn comment-btn">Comment</button>
+              <button class="capsule-btn watch-btn">Watch</button>
+              <button class="capsule-btn share-btn">Share</button>
+            </div>
+          </div>
+        `;
+        contentList.appendChild(card);
+
+        card.querySelector('.like-btn').addEventListener('click', () => { likes++; updateDashboard(); });
+        card.querySelector('.comment-btn').addEventListener('click', () => {
+          const text = prompt('Enter comment:');
+          if (text) { comments.push({ item: item.title, text }); renderComments(); updateDashboard(); }
+        });
+        card.querySelector('.watch-btn').addEventListener('click', () => {
+          watchTime[item.type] += item.duration; updateDashboard(); alert(`You watched ${item.title} for ${item.duration} mins`);
+        });
+        card.querySelector('.share-btn').addEventListener('click', () => { alert(`Share ${item.title} on social media`); });
+      });
+    }
+
+    function filterContent(type) {
+      const filtered = type === 'All' ? content : content.filter(c => c.type === type);
+      renderContent(filtered);
+    }
+
+    function renderComments() {
+      commentsList.innerHTML = '';
+      comments.forEach(c => {
+        const li = document.createElement('li');
+        li.className = 'border-b border-gray-600 p-1 text-xs';
+        li.textContent = `${c.item}: ${c.text}`;
+        commentsList.appendChild(li);
+      });
+    }
+
+    function updateDashboard() {
+      const ctx = document.getElementById('dashboardChart').getContext('2d');
+      if(window.chartInstance) window.chartInstance.destroy();
+      window.chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Movies', 'Drama', 'Songs', 'Likes', 'Comments'],
+          datasets: [{
+            label: 'Stats',
+            data: [watchTime.Movie, watchTime.Drama, watchTime.Song, likes, comments.length],
+            backgroundColor: ['#ef4444','#3b82f6','#10b981','#f97316','#8b5cf6']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: 'white', font: { size: 10 } }, grid: { color: '#374151' } },
+            y: { ticks: { color: 'white', font: { size: 10 } }, grid: { color: '#374151' } }
+          }
+        }
+      });
+    }
+
+    // Initial render -> Show all content
+    renderContent(content);
+    updateDashboard();
+  </script>
+</body>
+</html>
